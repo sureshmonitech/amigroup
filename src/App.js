@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import { UserProvider } from './context/UserContext';
+
+
+import './App.css'
+import Verifyuser from './util/Verifyuser';
+import Uploadfile from './components/Uploadfile';
+import Docbox from './components/Docbox';
+import DocumentCategorise from './components/DocumentCategorise';
+import Logout from './components/Logout';
+
+// import Uploaddocument from './component/Uploaddocument';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>  
+    
+    <Router basename='/charitable/'>   
+                
+      <Routes>
+         <Route path="/register" element={<Register />} />
+         <Route path="/signin" element={<Login />} />
+         <Route path="/verify" element={<Verifyuser />} /> 
+         <Route path="/upload" element={<Uploadfile />} /> 
+         <Route path="/docbox" element={<Docbox />} /> 
+         <Route path="/progress" element={<DocumentCategorise />} />
+         <Route path="/logout" element={<Logout />} />
+
+       </Routes>
+     </Router>
+   
+    </UserProvider>  
   );
-}
+};
 
 export default App;
